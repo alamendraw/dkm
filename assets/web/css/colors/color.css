@@ -1,0 +1,48 @@
+.event-single-date,.piller-backgroud,.dropdown-item:active,.accordion .card-header h5[aria-expanded="true"],.event-excerpt-readmore a,.portfolio-gallery a i,.muslimhub-btn a,.pricing-item small,.comment-navigation a,.dropdown-item.active,.nav-top-quote a,.pagination .nav-links .current,.pagination .nav-links .prev,.pagination .nav-links .next,.sticky .the_excerpt_content,#wp-calendar caption,.rss-date,.post-comments .comment-reply-link,.post-navigation .nav-previous a, .post-navigation .nav-next a,.the_excerpt_date,.breadcrumb-banner,button, input[type="button"], input[type="reset"], input[type="submit"],::selection,.newsletter,.progress-bar,.hvr-bounce-to-right:before,.call-to-action,.readmore a,.latest_blog_readmore a,.pricing-item a,.content-carousel-item,.profile-card span {
+	background: #33cc00;
+}
+.mosque-icon {
+	fill: #33cc00;
+}
+.portfolio-filter.active,.portfolio-filter:hover,.service-readmore a:hover,.search-form form button:hover i,.preloader-percentage,.quick-contact i,.event-item-content a:hover,.testimonial-item h6,.profile-card-content ul li a:hover,.pricing-item span,.page-links a,.comment-list a,.navbar-nav,.footer-widget .recent-post-widget a:hover,.widget-site-social a,.comment-reply-title a,.nav-top-contact-info i,.edit-link a,.the_excerpt .entry-meta ul li a:hover,.single-post .entry-meta ul li a:hover,.widget_tag_cloud a:hover,#wp-calendar a,.widget li a:hover,blockquote::before,.footer-widget li a:hover,#backtotop i:hover,.post-comments .commenter a,.post a,.the_excerpt .entry-meta ul li i, .single-post .entry-meta ul li i,#backtotop i,.error-404,.work-process-after:after,.work-process-item span,.service-tabs .tab-btns .tab-btn .icon,.service-img span,.blog_title a:hover,.copyright-bar a:hover,.footer-top-content .footer-logo:hover,.nav-link:hover {
+	color: #33cc00;
+}
+.service-tabs .tab-btns .tab-btn,.service-tabs .tab-content .content-box,.edit-link a,.pagination .nav-links a,blockquote,#backtotop i,.appointment input,.appointment select,.appointment textarea,.work-process-item span,.pricing-item-border {
+	border-color: #33cc00!important;
+}
+
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='#33cc00' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+/*----------------------------------------
+IF SCREEN SIZE LESS THAN 769px WIDE
+------------------------------------------*/
+
+@media screen and (max-width: 768px) {
+	.navbar .menu-item>.active {
+ 		background: #33cc00;
+	}
+}
+
+
+/*From Extra*/
+.pagination li .current,
+.navbar .menu-item.active a {
+	color: #33cc00;
+}
+
+.about-content ul li i,
+.about-border:after,
+.about-border:before,
+.pagination li a {
+	background: #33cc00;
+}
+
+
+.service-item
+.service-img,
+.pagination li a {
+	border-color: #33cc00!important;
+}
