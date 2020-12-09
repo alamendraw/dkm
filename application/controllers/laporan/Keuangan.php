@@ -237,6 +237,8 @@ class Keuangan extends CI_Controller {
 		$data['prev']= $cRet; 
 		if($type=='1'){ 
 			$this->mpdf->mpdf_vertical($cRet); 
+		}elseif($type=='9'){
+			echo $cRet;
 		}else{
 			header("Cache-Control: no-cache, no-store, must-revalidate");
 			header("Content-Type: application/vnd.ms-excel");
