@@ -11,7 +11,15 @@
                 <div class="card-content">
                     <div class="card-body card-dashboard"> 
 
-                    <div class="form-group">
+                        <div class="form-group">
+                            <label>Pilih Tahun</label>
+                            <div class="controls">
+                                <select class="form-control" id="year"> 
+                                </select>    
+                            </div>
+                        </div>
+
+                        <div class="form-group">
                             <label>Pilih Bulan</label>
                             <div class="controls">
                                 <select class="form-control" id="month">
@@ -74,19 +82,37 @@
 <script type="text/javascript"> 
     url = "<?php echo $url.'/laporan_jumat/';?>";
     var pil_jum = [];
-
+    $('#month').attr('disabled',true);
     $( "#date" ).datepicker({
         dateFormat: "dd-mm-yy",
         altFormat: "yy-mm-dd",  
     });
 
+    $.ajax({
+        type:'post',
+        url:"<?= $url.'/get_years';?>",
+        dataType:'json',
+        success:function(data){
+            cb_year = "<option value=''></option>";
+            for (let i = 0; i < data.length; i++) { 
+                cb_year += "<option value='"+data[i]['year']+"'>"+data[i]['year']+"</option>";
+            }
+            $("#year").html(cb_year);
+        }
+    });
+
+    $("#year").on('change', function(){ 
+        $('#month').attr('disabled',false);
+    });
+
     $("#month").on('change', function(){
         month_val = this.value;
+        year_val = $("#year").val();
         html='';
         $.ajax({
             type:'get',
             url: "<?php echo $url.'/jumat_get';?>",
-            data:({month:month_val}),
+            data:({month:month_val,year:year_val}),
             dataType: 'json',
             success : function(data){
                 for(i=0; i<data.length; i++){ 
@@ -107,16 +133,14 @@
         });
     });
 
-    $("#jumat").on('change', function(){
-        console.log(this.value);
+    $("#jumat").on('change', function(){ 
         for (i =0; i<pil_jum.length; i++) {            
             if(pil_jum[i].no == this.value){ 
                 $("#desc").html(pil_jum[i].start+' Sampai '+pil_jum[i].end);
             }
         }
     });
-
-    
+ 
     function dateindo(tgl){
         year = tgl.substr(0,4);
         month = tgl.substr(5,2);
@@ -181,13 +205,14 @@
         }
     }
     function print(type){
+        year = $("#year").val();
         month = $("#month").val();
         jumat = $("#jumat").val();
         date = $("#date").val();
         if(month == '' || jumat == ''){
             swal("Bulan dan Jum'at harus dipilih","","error");
         }else{
-            param = month+'/'+jumat+'?date='+date+'&type='+type;
+            param = month+'/'+jumat+'?date='+date+'&type='+type+'&year='+year;
             window.open(url+param,'_blank');
         }
     }

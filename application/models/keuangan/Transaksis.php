@@ -20,26 +20,26 @@ class Transaksis extends MY_Model {
     $query = $this->db->query("CALL rep_jumat('$date_start','$date_end','$date_start_be','$date_end_be')");
     return ($query)?$query->result():false;
   }
-  public function get_jumat_month($month){
+  public function get_jumat_month($month,$year){
     $this->db->select('*');
     $this->db->from('m_jumat');
-    $this->db->where('month',$month);
+    $this->db->where("month='$month' and year='$year'");
     $query = $this->db->get();
     return $query->result_array();
   }
 
-  public function get_jum($bln,$jum){ 
+  public function get_jum($bln,$jum,$year){ 
     $this->db->select("date_start,date_end,
     (select date_start from m_jumat where id=t.id-1)as date_start_be,
     (select date_end from m_jumat where id=t.id-1)as date_end_be");
     $this->db->from("m_jumat t");
-    $this->db->where("month=$bln and no=$jum");
+    $this->db->where("month=$bln and no=$jum and year=$year");
     $query = $this->db->get();
     return ($query)?$query->result():false;
   }
 
-  public function get_rekap_jumat($id){
-    $query = $this->db->query("call rekap_jumat($id)");
+  public function get_rekap_jumat($id,$thn){
+    $query = $this->db->query("call rekap_jumat($id,$thn)");
     return $query->result();
   }
  
@@ -54,6 +54,11 @@ class Transaksis extends MY_Model {
     $this->db->where(['id'=>$id]);
     $query = $this->db->get();
     return $query->result();
+  }
+
+  public function get_years(){
+    $query = $this->db->query("SELECT year from m_jumat group by year");
+    return $query->result_array();
   }
   
 }

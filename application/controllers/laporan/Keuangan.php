@@ -18,7 +18,7 @@ class Keuangan extends CI_Controller {
 	public function index() { 
 		 
 	}
-
+ 
 	public function jumat() { 
 		$this->output->set_template('template');
 		$this->output->set_title("Laporan Jum'at Masjid");
@@ -58,7 +58,7 @@ class Keuangan extends CI_Controller {
 						<td align='center'><b>MASJID ".strtoupper($mosque->name)."</b></td>  
 					</tr>
 					<tr>
-						<td align='center'><b>Bulan ".get_month($bln)." 2020</b></td>  
+						<td align='center'><b>Bulan ".get_month($bln)." </b></td>  
 					</tr>
 					<tr>
 						<td colspan='3'>&nbsp;</td>  
@@ -122,19 +122,28 @@ class Keuangan extends CI_Controller {
 						<td align='center'>".$mosque->ketua_dkm."</td>  
 					</tr>
 				</table>"; 
-		$this->mpdf->mpdf_vertical($cRet); 
+		$judul = "Laporan Bulan ".get_month($bln);
+		$this->mpdf->mpdf_vertical($cRet,$judul); 
 	 }
+
+	public function get_years(){
+		$data = $this->transaksis->get_years(); 
+		echo json_encode($data);
+	}
+
 
 	 public function jumat_get(){
 		$month = $this->input->get('month');
-		$data = $this->transaksis->get_jumat_month($month); 
+		$year = $this->input->get('year');
+		$data = $this->transaksis->get_jumat_month($month,$year); 
 		echo json_encode($data);
 	 }
 
 	 public function laporan_jumat($bln,$jum){
 		$date_ttd = mysql_date($_REQUEST['date']);
 		$type = $_REQUEST['type'];
-		$data_jum = $this->transaksis->get_jum($bln,$jum)[0];
+		$year = $_REQUEST['year'];
+		$data_jum = $this->transaksis->get_jum($bln,$jum,$year)[0];
 		
 		$cRet='';
 		$mosque = $this->mosques->get(['id'=>userinfo('mosque_id')]);
@@ -147,7 +156,7 @@ class Keuangan extends CI_Controller {
 						 <td align='center' width='20%' rowspan='3'></td>
 					 </tr>
 					 <tr>
-						 <td align='center' colspan='3'><b> JUM'AT KE $jum BULAN ".strtoupper(get_month($bln))." 2020</b></td>  
+						 <td align='center' colspan='3'><b> JUM'AT KE $jum BULAN ".strtoupper(get_month($bln))." ".$year."</b></td>  
 					 </tr>
 					 <tr>
 						 <td align='center' colspan='3'><b>DKM MASJID ".strtoupper($mosque->name)."</b></td>  
@@ -159,10 +168,10 @@ class Keuangan extends CI_Controller {
 		 $cRet .="<table width='100%' style='font-size:12px; border-collapse:collapse; font-family:arial;' border='1'>
 					 <thead>
 						 <tr>   
-							 <th bgcolor='#93f784' width='15%'>Tanggal</th> 
-							 <th bgcolor='#93f784' width='40%'>Keterangan</th> 
-							 <th bgcolor='#93f784' width='15%'>Pemasukan</th>      
-							 <th bgcolor='#93f784' width='15%'>Pengeluaran</th>      
+							 <th bgcolor='#93f784' width='19%'>Tanggal</th> 
+							 <th bgcolor='#93f784' width='38%'>Keterangan</th> 
+							 <th bgcolor='#93f784' width='14%'>Pemasukan</th>      
+							 <th bgcolor='#93f784' width='14%'>Pengeluaran</th>      
 							 <th bgcolor='#93f784' width='15%'>Saldo</th>      
 						 </tr>
 					 </thead>
@@ -235,8 +244,9 @@ class Keuangan extends CI_Controller {
 					 </tr>
 				 </table>";
 		$data['prev']= $cRet; 
+		$judul = "Laporan Jum'at ke $jum Bulan ".get_month($bln)." ".$year;
 		if($type=='1'){ 
-			$this->mpdf->mpdf_vertical($cRet); 
+			$this->mpdf->mpdf_vertical($cRet,$judul); 
 		}elseif($type=='9'){
 			echo $cRet;
 		}else{
@@ -249,6 +259,7 @@ class Keuangan extends CI_Controller {
 	  }
 	  
 	 public function laporan_rekap_jumat(){ 
+		$thn= $_REQUEST['year'];
 		$bln= $_REQUEST['month'];
 		$type= $_REQUEST['type'];
 		$date= mysql_date($_REQUEST['date']);
@@ -264,7 +275,7 @@ class Keuangan extends CI_Controller {
 						 <td align='center' width='20%' rowspan='3'></td>
 					 </tr>
 					 <tr>
-						 <td align='center' colspan='3'><b> BULAN ".strtoupper(get_month($bln))." 2020</b></td>  
+						 <td align='center' colspan='3'><b> BULAN ".strtoupper(get_month($bln))." ".$thn."</b></td>  
 					 </tr>
 					 <tr>
 						 <td align='center' colspan='3'><b>DKM MASJID ".strtoupper($mosque->name)."</b></td>  
@@ -285,7 +296,7 @@ class Keuangan extends CI_Controller {
 					 </thead>
 		 ";
 
-		$list = $this->transaksis->get_rekap_jumat($bln);
+		$list = $this->transaksis->get_rekap_jumat($bln,$thn);
 		$saldo = 0; 
 		  
 		$tdebet = 0;
@@ -342,8 +353,9 @@ class Keuangan extends CI_Controller {
 				 </table>";
 				 
 		$data['prev']= $cRet; 
+		$judul =  "Laporan Rekap Bulan ".get_month($bln)." ".$thn;
 		if($type=='1'){ 
-			$this->mpdf->mpdf_horizontal($cRet); 
+			$this->mpdf->mpdf_horizontal($cRet,$judul); 
 		}else{
 			header("Cache-Control: no-cache, no-store, must-revalidate");
 			header("Content-Type: application/vnd.ms-excel");

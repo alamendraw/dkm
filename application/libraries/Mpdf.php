@@ -3,7 +3,7 @@
 
 class Mpdf { 
 
-	function mpdf_vertical($content)
+	function mpdf_vertical($content,$title)
 	{
 		$this->mpdf = new \Mpdf\Mpdf();
 		$this->mpdf->shrink_tables_to_fit = 1;
@@ -17,12 +17,13 @@ class Mpdf {
 			'mgh' => '10',
 			'mgf' => '10',
 		));
+		$this->mpdf->SetTitle($title); 
 		$this->mpdf->WriteHTML($content);
 		$this->mpdf->Output();
 		return $this->mpdf;
 	}
 
-	function mpdf_horizontal($content)
+	function mpdf_horizontal($content,$title)
 	{
 		$this->mpdf = new \Mpdf\Mpdf();
 		$this->mpdf->shrink_tables_to_fit = 1;
@@ -36,6 +37,7 @@ class Mpdf {
 			'mgh' => '10',
 			'mgf' => '10',
 		));
+		$this->mpdf->SetTitle($title); 
 		$this->mpdf->WriteHTML($content);
 		$this->mpdf->Output();
 		return $this->mpdf;

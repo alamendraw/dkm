@@ -11,7 +11,15 @@
                 <div class="card-content">
                     <div class="card-body card-dashboard"> 
 
-                    <div class="form-group">
+                        <div class="form-group">
+                            <label>Pilih Tahun</label>
+                            <div class="controls">
+                                <select class="form-control" id="year"> 
+                                </select>    
+                            </div>
+                        </div>
+
+                        <div class="form-group">
                             <label>Pilih Bulan</label>
                             <div class="controls">
                                 <select class="form-control" id="month">
@@ -60,17 +68,37 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/vendors/css/extensions/sweetalert2.css">
 <script type="text/javascript"> 
     url = "<?php echo $url.'/laporan_rekap_jumat';?>";
+    $('#month').attr('disabled',true);
     $( "#date" ).datepicker({
         dateFormat: "dd-mm-yy",
         altFormat: "yy-mm-dd",  
     });
+    
+    $.ajax({
+        type:'post',
+        url:"<?= $url.'/get_years';?>",
+        dataType:'json',
+        success:function(data){
+            cb_year = "<option value=''></option>";
+            for (let i = 0; i < data.length; i++) { 
+                cb_year += "<option value='"+data[i]['year']+"'>"+data[i]['year']+"</option>";
+            }
+            $("#year").html(cb_year);
+        }
+    });
+
+    $("#year").on('change', function(){ 
+        $('#month').attr('disabled',false);
+    });
+
     function print(type){
+        year = $("#year").val(); 
         month = $("#month").val(); 
         date = $("#date").val();
         if(month == ''){
             swal("Bulan dan Jum'at harus dipilih","","error");
         }else{
-            param = '?month='+month+'&date='+date+'&type='+type;
+            param = '?month='+month+'&year='+year+'&date='+date+'&type='+type;
             window.open(url+param,'_blank');
         }
     }
