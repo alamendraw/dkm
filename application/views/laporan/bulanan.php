@@ -33,7 +33,8 @@
                         </div>
 
                         <div class="form-group" align="center">
-                            <a href="javascript:void(0);" onClick="print();" class="btn btn-icon btn-outline-primary btn-sm" data-toggle="tooltip" data-original-title="Cetak"> <i class="feather icon-printer"></i> Cetak Laporan</a>
+                            <a href="javascript:void(0);" onClick="print(1);" class="btn btn-icon btn-outline-primary btn-sm" data-toggle="tooltip" data-original-title="Cetak"> <i class="feather icon-printer"></i> Cetak PDF</a>
+                            <a href="javascript:void(0);" onClick="print(2);" class="btn btn-icon btn-outline-success btn-sm" data-toggle="tooltip" data-original-title="Cetak"> <i class="feather icon-printer"></i> Cetak Excel</a>
                         </div>
                         
                     </div>
@@ -44,9 +45,9 @@
 </section>  
 <script type="text/javascript"> 
     url = "<?php echo $url.'/report/';?>";
-    function print(){
+    function print(type){
         month = $("#month").val();
-        window.open(url+month,'_blank');
+        window.open(url+month+'/'+type,'_blank');
     }
 </script>
     

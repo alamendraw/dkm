@@ -43,7 +43,7 @@ class Keuangan extends CI_Controller {
 		$this->load->view('laporan/bulanan',$this->data);
 	}
 
-	public function report($bln){
+	public function report($bln,$type){
 		$cRet='';
 		$mosque = $this->mosques->get(['id'=>userinfo('mosque_id')]);
 		$cRet .="<table width='100%' style='font-size:14px; border-collapse:collapse; font-family:arial;' border='0'>
@@ -51,14 +51,14 @@ class Keuangan extends CI_Controller {
 						<td align='right' width='20%' rowspan='3'>
 						<img src='".base_url()."assets/images/logo/masjid.png'  height='65' width='65' />
 						</td>
-						<td align='center' width='60%'><b>BUKU KAS DEWAN KEMAKMURAN MASJID (DKM)</b></td>
+						<td align='center' width='60%' colspan='4'><b>BUKU KAS DEWAN KEMAKMURAN MASJID (DKM)</b></td>
 						<td align='center' width='20%' rowspan='3'></td>
 					</tr>
 					<tr>
-						<td align='center'><b>MASJID ".strtoupper($mosque->name)."</b></td>  
+						<td align='center' colspan='4'><b>MASJID ".strtoupper($mosque->name)."</b></td>  
 					</tr>
 					<tr>
-						<td align='center'><b>Bulan ".get_month($bln)." </b></td>  
+						<td align='center' colspan='4'><b>Bulan ".get_month($bln)." </b></td>  
 					</tr>
 					<tr>
 						<td colspan='3'>&nbsp;</td>  
@@ -122,8 +122,18 @@ class Keuangan extends CI_Controller {
 						<td align='center'>".$mosque->ketua_dkm."</td>  
 					</tr>
 				</table>"; 
+				
+		$data['prev']= $cRet; 
 		$judul = "Laporan Bulan ".get_month($bln);
-		$this->mpdf->mpdf_vertical($cRet,$judul); 
+		if($type=='1'){ 
+			$this->mpdf->mpdf_vertical($cRet,$judul); 
+		}else{
+			header("Cache-Control: no-cache, no-store, must-revalidate");
+			header("Content-Type: application/vnd.ms-excel");
+			header("Content-Disposition: attachment; filename= Laporan_Jumat.xls");
+			$this->load->view('laporan/excel',$data);
+		}
+		// $this->mpdf->mpdf_vertical($cRet,$judul); 
 	 }
 
 	public function get_years(){
