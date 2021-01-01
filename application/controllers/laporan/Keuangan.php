@@ -110,9 +110,9 @@ class Keuangan extends CI_Controller {
 						<td colspan='2'>&nbsp;</td> 
 					</tr>  
 					<tr> 
-						<td align='center' width='30%'>Bendahara</td>
+						<td align='center' width='30%' colspan='2'>Bendahara</td>
 						<td align='center' width='40%'></td>
-						<td align='center' width='30%'>Ketua DKM</td>
+						<td align='center' width='30%' colspan='2'>Ketua DKM</td>
 					</tr>  
 					<tr>
 						<td height='70px'>&nbsp;</td>  
@@ -120,9 +120,9 @@ class Keuangan extends CI_Controller {
 						<td>&nbsp;</td>  
 					</tr>
 					<tr>
-						<td align='center'>".$mosque->bendahara."</td>  
+						<td align='center' colspan='2'>".$mosque->bendahara."</td>  
 						<td></td>  
-						<td align='center'>".$mosque->ketua_dkm."</td>  
+						<td align='center' colspan='2'>".$mosque->ketua_dkm."</td>  
 					</tr>
 				</table>"; 
 				
