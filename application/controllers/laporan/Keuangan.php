@@ -241,7 +241,7 @@ class Keuangan extends CI_Controller {
 						 <td align='center'>Cikalong, ".date_indo($date_ttd)."</td>
 					 </tr> 
 					 <tr> 
-						 <td align='center' width='30%'></td>
+						 <td align='center' width='30%'>Bendahara</td>
 						 <td align='center' width='40%'></td>
 						 <td align='center' width='30%'>Ketua DKM</td>
 					 </tr>  
@@ -251,7 +251,7 @@ class Keuangan extends CI_Controller {
 						 <td>&nbsp;</td>  
 					 </tr>
 					 <tr>
-					 	<td align='center'></td>
+					 	<td align='center'>".$mosque->bendahara."</td>
 						 <td>&nbsp;</td>    
 						 <td align='center'>".$mosque->ketua_dkm."</td>  
 					 </tr>
@@ -349,7 +349,7 @@ class Keuangan extends CI_Controller {
 						 <td align='center' colspan='2'>Cikalong, ".date_indo($date)."</td>
 					 </tr> 
 					 <tr> 
-						 <td align='center' width='30%' colspan='2'></td>
+						 <td align='center' width='30%' colspan='2'>Bendahara</td>
 						 <td align='center' width='40%'></td>
 						 <td align='center' width='30%' colspan='2'>Ketua DKM</td>
 					 </tr>  
@@ -359,7 +359,7 @@ class Keuangan extends CI_Controller {
 						 <td>&nbsp;</td>  
 					 </tr>
 					 <tr>
-					 	<td align='center' colspan='2'></td>
+					 	<td align='center' colspan='2'>".$mosque->bendahara."</td>
 						 <td>&nbsp;</td>    
 						 <td align='center' colspan='2'>".$mosque->ketua_dkm."</td>  
 					 </tr>
