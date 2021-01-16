@@ -8,7 +8,7 @@
                         <i class="feather icon-arrow-down-circle text-primary font-medium-5"></i>
                     </div>
                 </div>
-                <h2 class="text-bold-700 mt-1 mb-25">Pendapatan</h2>
+                <h2 class="text-bold-700 mt-1 mb-25">Pendapatans</h2>
                 <table width="100%">
                     <tr>
                         <td width="40%"><b>Bulan Ini</b></td>
