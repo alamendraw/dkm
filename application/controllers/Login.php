@@ -26,14 +26,14 @@ class Login extends CI_Controller {
 	}
 
 	public function signin(){
-		// $mosque 	= $_REQUEST['mosque'];
+		$tahun 	= $_REQUEST['tahun'];
 		$username 	= $_REQUEST['username'];
 		$password 	= $_REQUEST['password'];
 		// $check_mosque = $this->check_mosque($mosque);
 		// if($check_mosque){
 			$user = $this->check_user($username);
 			if($user){
-				$verify = $this->verify($user, $password);
+				$verify = $this->verify($user, $password,$tahun);
 				if ($verify) {
 					redirect('home', 'refresh');
 				}else{
@@ -48,14 +48,14 @@ class Login extends CI_Controller {
 		
 	}
 	
-	private function check_mosque($mosque_code)
-	{
-		$mosque = $this->mosques->get(['code' => $mosque_code]);
-		if ($mosque) {
-		return $mosque;
-		}
-		return false;
-	}
+	// private function check_mosque($mosque_code)
+	// {
+	// 	$mosque = $this->mosques->get(['code' => $mosque_code]);
+	// 	if ($mosque) {
+	// 	return $mosque;
+	// 	}
+	// 	return false;
+	// }
 
 	private function check_user($username)
 	{
@@ -66,18 +66,18 @@ class Login extends CI_Controller {
 		return false;
 	}
 
-	private function verify($user, $password){
+	private function verify($user, $password,$tahun){
 		$verify = $this->password->check_password($password, $user->password);
 
 		if ($verify) {
 		$this->users->update(['last_login' => date('Y-m-d H:i:s')], $user->id);
-		$this->set_session($user);
+		$this->set_session($user,$tahun);
 		return true;
 		}
 		return false;
 	}
 
-	private function set_session($user) { 
+	private function set_session($user,$tahun) { 
 		$mosque = $this->mosques->get($user->mosque_id);
 		$session_data = array(
 		  'logged_in' => TRUE,
@@ -89,7 +89,8 @@ class Login extends CI_Controller {
 			'email' => $user->email,
 			'name' => $user->name,
 			'username' => $user->username, 
-			'image' => $user->image
+			'image' => $user->image,
+			'tahun' => $tahun
 		  ]
 		);
 	

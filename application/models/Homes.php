@@ -23,9 +23,9 @@ class Homes extends MY_Model {
       SELECT 0, 0, sum(debet), 0, 0, sum(kredit),0,0
       from transaction
       union
-      SELECT 0, 0, 0, 0, 0, 0,SUM(cost*qty1*(IF(qty2>0, qty2, 1))), 0 from budget b inner JOIN rekening r on b.kd_rek=r.id where r.kd_rek1=1
+      SELECT 0, 0, 0, 0, 0, 0,SUM(cost*qty1*(IF(qty2>0, qty2, 1))), 0 from budget b inner JOIN rekening3 r on b.kd_rek=r.id where r.kd_rek1=1
       union
-      SELECT 0, 0, 0, 0, 0, 0,0,SUM(cost*qty1*(IF(qty2>0, qty2, 1))) from budget b inner JOIN rekening r on b.kd_rek=r.id where r.kd_rek1=2
+      SELECT 0, 0, 0, 0, 0, 0,0,SUM(cost*qty1*(IF(qty2>0, qty2, 1))) from budget b inner JOIN rekening3 r on b.kd_rek=r.id where r.kd_rek1=2
     )zx");   
     return $query->result();
   }

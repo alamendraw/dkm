@@ -8,11 +8,11 @@ class Pendapatan extends CI_Controller {
 		if(!$this->session->userdata('logged_in')){
 			redirect('login', 'refresh');
 		} 
-		$this->load->model('master/rekenings');  
+		$this->load->model('master/rekenings3');  
 		$this->load->model('keuangan/pendapatans');  
 		$this->load->model('anggarans');  
 		$this->data['url'] = site_url('keuangan/pendapatan'); 
-		$this->data['drop_rek'] = $this->rekenings->dropdown(1); 
+		$this->data['drop_rek'] = $this->rekenings3->dropdown(1); 
 		
 
 	}
@@ -60,7 +60,7 @@ class Pendapatan extends CI_Controller {
 		$this->data['title'] = 'Ubah Data pendapatan';  
 		$field = $this->pendapatans->get_data($id)[0];  
 		// $this->data['val_ang'] = $this->anggarans->get(['id'=>$field->id_budget]);
-		// $this->data['val_rek'] = $this->rekenings->get(['id'=>$field->kd_rek]);
+		// $this->data['val_rek'] = $this->rekenings3->get(['id'=>$field->kd_rek]);
 		$this->data['action'] = 'update';   
 		$this->data['data'] = $field;  
 		$this->load->view('keuangan/form_pendapatan',$this->data);

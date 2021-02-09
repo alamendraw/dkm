@@ -2,7 +2,7 @@
 
 class Rekenings2 extends MY_Model {
 
-  public $table = 'rek2';
+  public $table = 'rekening2';
   public $primary_key = 'id';
 
   public function __construct()
@@ -23,7 +23,7 @@ class Rekenings2 extends MY_Model {
   public function dropdown2($id){
     $this->db->select('rd.*');
     $this->db->from("$this->table rd");
-    $this->db->join("rekening re","rd.kd_rek1=re.kd_rek1 and rd.kd_rek2=re.kd_rek2","join");
+    $this->db->join("rekening3 re","rd.kd_rek1=re.kd_rek1 and rd.kd_rek2=re.kd_rek2","join");
     $this->db->where("re.id=$id");
     $this->db->group_by('id');
     $query = $this->db->get();

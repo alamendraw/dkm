@@ -16,8 +16,8 @@
                                 <thead>
                                     <tr>
                                         <th width="3%">No</th> 
-                                        <th width="10%">Tanggal</th> 
-                                        <th width="57%">Keterangan</th>   
+                                        <th width="12%">Tanggal</th> 
+                                        <th width="55%">Keterangan</th>   
                                         <th width="20%">Nilai</th>       
                                         <th width="10%">Action</th> 
                                     </tr>

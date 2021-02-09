@@ -13,38 +13,34 @@
                 <div class="card-content">
                     <div class="card-body card-dashboard"> 
                         <div class="table-responsive"> 
-                            <table class="table" width="100%">
+                            <table class="table" width="100%" border="1">
                                 <thead class="thead-dark">
                                     <tr> 
-                                        <th >Rekening</th> 
-                                        <th >Nama</th> 
-                                        <th >Nilai</th>    
-                                        <th >Satuan</th>    
-                                        <th >Total</th>    
+                                        <th width="5%">Rekening</th> 
+                                        <th width="50%">Nama</th> 
+                                        <th width="13%">Nilai</th>    
+                                        <th width="19%">Satuan</th>    
+                                        <th width="13%">Jumlah</th>    
                                     </tr>
                                 </thead>
 
                                 <tbody>
 
                                     <?php foreach($list as $row){
-                                        if(strlen($row->kd_rek)<7){
-                                            $b = '<b> '; $bt = ' </b>';
+                                        $vs = $row->style;
+                                        if($vs=='3'){
+                                            $style= "";
                                         }else{
-                                            $b = ''; $bt = '';
-                                        }
-                                        if($row->sts=='H1'){
-                                            $cls = 'table-primary'; 
-                                        }else{
-                                            $cls = ''; 
+                                            $style= "font-weight:bold;";
                                         }
                                     ;?>
 
-                                    <tr class="<?php echo $cls;?>"> 
-                                        <td><?php echo $b; echo ($row->sts!='T')?'':$row->kd_rek;?><?php echo $bt; ?></td>  
-                                        <td><?php echo $b; echo $row->name;?><?php echo $bt; ?></td>  
-                                        <td align="right"><?php echo $b; echo ($row->cost==0)?'':number_format($row->cost);?><?php echo $bt; ?></td>  
-                                        <td><?php echo $b; echo ($row->unit==0)?'':$row->unit;?><?php echo $bt; ?></td>  
-                                        <td align="right"><?php echo $b; echo ($row->total==0)?'':number_format($row->total);?><?php echo $bt; ?></td>  
+                                    <tr> 
+                                        <td style="<?= $style;?>"><?=($vs<'4')?$row->kode:'';?></td>  
+                                        <td style="<?= $style;?>"><?= $row->name;?></td>  
+                                        <td style="<?= $style;?>" align="right"><?= ($row->nilai==0)?'':number_format($row->nilai);?></td>  
+                                        <td style="<?= $style;?>"><?= $row->satuan;?></td>  
+                                        <td style="<?= $style;?>" align="right"><?= ($row->jumlah==0)?'':number_format($row->jumlah);?></td>  
                                     </tr> 
                                     <?php };?>
                                 </tbody>

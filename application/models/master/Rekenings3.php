@@ -1,8 +1,8 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Rekenings extends MY_Model {
+class Rekenings3 extends MY_Model {
 
-  public $table = 'rekening';
+  public $table = 'rekening3';
   public $primary_key = 'id';
 
   public function __construct()
@@ -24,9 +24,9 @@ class Rekenings extends MY_Model {
     $this->db->select('rs.*');
     $this->db->from("$this->table rd");
     if($jns==1){
-      $this->db->join("rek1 rs","rd.kd_rek1=rs.id","inner");
+      $this->db->join("rekkening1 rs","rd.kd_rek1=rs.id","inner");
     }else{
-      $this->db->join("rek2 rs","rd.kd_rek2=rs.kd_rek2","inner");
+      $this->db->join("rekkening2 rs","rd.kd_rek2=rs.kd_rek2","inner");
     }
      
     $this->db->where(['rd.id'=>$kd]);

@@ -8,7 +8,7 @@ class Integrasi extends CI_Controller {
 		if(!$this->session->userdata('logged_in')){
 			redirect('login', 'refresh');
 		} 
-		$this->load->model('master/rekenings');  
+		$this->load->model('master/rekenings3');  
 		$this->load->model('master/rekenings2');  
 		$this->load->model('keuangan/transaksis');  
 		$this->load->model('anggarans');  

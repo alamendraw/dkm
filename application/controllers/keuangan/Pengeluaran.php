@@ -5,11 +5,11 @@ class Pengeluaran extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();   
-		$this->load->model('master/rekenings');  
+		$this->load->model('master/rekenings3');  
 		$this->load->model('keuangan/pengeluarans');  
 		$this->load->model('anggarans');  
 		$this->data['url'] = site_url('keuangan/pengeluaran'); 
-		$this->data['drop_rek'] = $this->rekenings->dropdown(2); 
+		$this->data['drop_rek'] = $this->rekenings3->dropdown(2); 
 		if(!$this->session->userdata('logged_in')){
 			redirect('login', 'refresh');
 		}
@@ -59,7 +59,7 @@ class Pengeluaran extends CI_Controller {
 		$this->data['title'] = 'Ubah Data Pengeluaran';  
 		$field = $this->pengeluarans->get_data($id)[0];  
 		// $this->data['val_ang'] = $this->anggarans->get(['id'=>$field->id_budget]);
-		// $this->data['val_rek'] = $this->rekenings->get(['id'=>$field->kd_rek]);
+		// $this->data['val_rek'] = $this->rekenings3->get(['id'=>$field->kd_rek]);
 		$this->data['action'] = 'update';   
 		$this->data['data'] = $field;  
 		$this->load->view('keuangan/form_pengeluaran',$this->data);

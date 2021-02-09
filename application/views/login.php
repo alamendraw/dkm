@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     
-    <title>Login MMS</title>
+    <title>Login Masjid</title>
     <link rel="apple-touch-icon" href="<?php echo base_url();?>assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="<?php echo base_url();?>assets/images/ico/fav_mosque.ico">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
@@ -78,23 +78,23 @@
                                                         </div>
                                                         <label for="user-password">Password</label>
                                                     </fieldset>
+
+                                                    <fieldset class="form-group">
+                                                        <label for="first-name-vertical">Tahun Anggaran</label> 
+                                                        <select name="tahun" id="user-tahun" class="form-control">
+                                                            <option value="2021">2021</option>
+                                                            <option value="2020">2020</option>
+                                                        </select> 
+                                                    </fieldset>
+
                                                     <div class="form-group d-flex justify-content-between align-items-center">
                                                         <div class="text-left">
                                                             <fieldset class="checkbox">
-                                                                <div class="vs-checkbox-con vs-checkbox-primary">
-                                                                    <!-- <input type="checkbox">
-                                                                    <span class="vs-checkbox">
-                                                                        <span class="vs-checkbox--check">
-                                                                            <i class="vs-icon feather icon-check"></i>
-                                                                        </span>
-                                                                    </span>
-                                                                    <span class="">Remember me</span> -->
+                                                                <div class="vs-checkbox-con vs-checkbox-primary"> 
                                                                 </div>
                                                             </fieldset>
-                                                        </div>
-                                                        <!-- <div class="text-right"><a href="auth-forgot-password.html" class="card-link">Forgot Password?</a></div> -->
-                                                    </div>
-                                                    <!-- <a href="<?php echo site_url('register');?>" class="btn btn-outline-primary float-left btn-inline">Register</a> -->
+                                                        </div> 
+                                                    </div> 
                                                     <button type="submit" class="btn btn-primary float-right btn-inline">Login</button>
                                                 </form>
                                             </div>

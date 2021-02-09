@@ -23,7 +23,7 @@ class Pengeluarans extends MY_Model {
   public function get_report($bln){
     $this->db->select("t.no_kas,t.date,t.kredit,t.description");
     $this->db->from("$this->table t"); 
-    $this->db->join("rekening r", "t.kd_rek=r.id", "inner");
+    $this->db->join("rekening3 r", "t.kd_rek=r.id", "inner");
     $this->db->where(['r.kd_rek1'=>'2','MONTH(t.date)'=>$bln]);
     $query = $this->db->get();
     return ($query)?$query->result():false;

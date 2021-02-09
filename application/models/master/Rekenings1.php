@@ -2,7 +2,7 @@
 
 class Rekenings1 extends MY_Model {
 
-  public $table = 'rek1';
+  public $table = 'rekening1';
   public $primary_key = 'id';
 
   public function __construct()
