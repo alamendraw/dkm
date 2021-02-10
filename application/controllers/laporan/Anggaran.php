@@ -62,9 +62,9 @@ class Anggaran extends CI_Controller {
 					<thead>
 					<tr> 
 						<th bgcolor='#93f784' width='10%'>Rekening</th> 
-						<th bgcolor='#93f784' width='38%'>Nama</th> 
-						<th bgcolor='#93f784' width='17%'>Nilai</th>    
-						<th bgcolor='#93f784' width='18%'>Satuan</th>    
+						<th bgcolor='#93f784' width='38%'>Nama</th>   
+						<th bgcolor='#93f784' width='18%'>Satuan</th> 
+						<th bgcolor='#93f784' width='17%'>Nilai</th>     
 						<th bgcolor='#93f784' width='17%'>Jumlah</th>    
 					</tr>
 					<tr> 
@@ -102,8 +102,8 @@ class Anggaran extends CI_Controller {
 			$cRet .="<tr> 
 						<td style='$style' >$kode</td> 
 						<td style='$style' >$row->name</td> 
-						<td style='$style' align='right' >$nilai</td>    
-						<td style='$style' align='right'>$row->satuan</td>    
+						<td style='$style' align='right'>$row->satuan</td> 
+						<td style='$style' align='right' >$nilai</td>       
 						<td style='$style' align='right' >$jumlah</td>    
 					</tr>";
 			 

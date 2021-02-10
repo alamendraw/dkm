@@ -284,13 +284,13 @@ class Anggarans extends MY_Model {
       
       union
       -- Hitung Surplus/Defisit
-      SELECT '6' style,'9x' kode,'Surplus / Defisit' name,'' satuan,0 nilai,(sum(debet)+sum(kredit)) jumlah from(	
+      SELECT '6' style,'9x' kode,'Surplus / Defisit' name,'' satuan,0 nilai,(sum(debet)-sum(kredit)) jumlah from(	
         SELECT ifnull(sum(jumlah),0) debet,0 kredit from(
-          SELECT left(kd_rek,2) rek,(if(qty1>0,qty1,1)*if(qty2>0,qty2,1)*if(cost>0,cost,0)) jumlah from budget where tahun='$this->thn_ang'
+          SELECT left(kd_rek,1) rek,total jumlah from budget where tahun='$this->thn_ang'
         )v where left(rek,1)=1	
         union
-        SELECT ifnull(sum(jumlah),0) debet,0 kredit from(
-          SELECT left(kd_rek,2) rek,(if(qty1>0,qty1,1)*if(qty2>0,qty2,1)*if(cost>0,cost,0)) jumlah from budget where tahun='$this->thn_ang'
+        SELECT 0 debet,ifnull(sum(jumlah),0) kredit from(
+          SELECT left(kd_rek,2) rek,total jumlah from budget where tahun='$this->thn_ang'
         )v where left(rek,1)=2
       )sd
       
