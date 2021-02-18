@@ -42,6 +42,18 @@ class Api extends CI_Controller {
 		echo json_encode($item);
 	}
 
+	public function sisa_saldo_get() { 
+		$item=[];
+		$sql = $this->db->query("SELECT (sum(debet)-sum(kredit)) saldo from transaction");
+		$data = $sql->result_array();
+		foreach($data as $row){ 
+			array_push($item,array(
+				'saldo'=>number_format($row['saldo'])
+			));
+		}
+		echo json_encode($item);
+	}
+
 	public function pemasukan_post(){
 		$request = json_decode(file_get_contents('php://input'));
 		$field['no_kas'] = $this->get_kas();
